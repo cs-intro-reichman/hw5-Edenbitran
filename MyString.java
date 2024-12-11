@@ -84,7 +84,7 @@ public class MyString {
      * spaces.
      */
     public static String spacedString(String str) {
-        String spaceStr = "";
+        String spaceStr = " ";
         if (str.length() == 0) {
             return " ";
         }
@@ -132,6 +132,9 @@ public class MyString {
     public static String remove(String str1, String str2) {
         int[] cChar = new int[countingChars(str1)];
         String chars = addOnceChar(str1);
+        if (str2 == null) {
+            return str1;
+        }
         String remStr = "";
         for (int i = 0; i < chars.length(); i++) { // counting each char at str2-str1 -with an array 
             cChar[i] = (countChar(str1, chars.charAt(i)) - countChar(str2, chars.charAt(i)));
