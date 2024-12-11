@@ -9,12 +9,13 @@ public class MyString {
         // System.out.println(countChar(hello, 'h')); // V
         // System.out.println(countChar(hello, 'l')); // V
         // System.out.println(countChar(hello, 'z')); // V
-        //System.out.println(spacedString(hello)); // V
+       // System.out.println(spacedString(hello)); // V
         //System.out.println(randomStringOfLetters(3));
-        System.out.println(subsetOf("bye", "hello"));
-        //System.out.println(remove("meet", "committee"));
+        //System.out.println(subsetOf("pas", "space"));
+        System.out.println(remove("abc", "b"));
         //countingChars("meet", "committee");
         //System.out.println(insertRandomly('a', hello));
+        //System.out.println(spacedString(""));
     }
 
     /**
@@ -56,10 +57,14 @@ public class MyString {
             int tCount = 0;
             String c = "";
             for (int i = 0; i < str1.length(); i++) {
-                //System.out.println("i= " + i + " index= " + index);
-                if (str2.contains(c + str1.charAt(i))) {
-                    // System.out.println(c + str1.charAt(i));
-                    tCount++;
+                if ((str2.contains(c + str1.charAt(i)))) {// need to add a check of each char
+                    int index = str2.indexOf(str1.charAt(i));
+                    if (countChar(str2, str2.charAt(index)) >= countChar(str1, str1.charAt(i))) {
+                        tCount++;
+                    }
+                    else {
+                        return false;
+                    }
                 }
             }
             if (tCount == str1.length()) {
@@ -80,8 +85,11 @@ public class MyString {
      */
     public static String spacedString(String str) {
         String spaceStr = "";
-        for (int i = 0; i < str.length() - 1; i++) {
-            if (i < str.length()) {
+        if (str.length() == 0) {
+            return " ";
+        }
+        for (int i = 0; i < str.length(); i++) {
+            if (i+1 < str.length()) {
                 spaceStr += str.charAt(i) + " ";
             }
         }
@@ -122,20 +130,11 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-        //countingChars(str1, str2);
-        // System.out.println("~~~~~~~~~");
-        // System.out.println(countingChars(str2)); // return chars length array
-        int[] cChar = new int[countingChars(str2)];
-        // System.out.println("cChar l= "+cChar.length);
-        // System.out.println("~~~~~~~~~");
-        //System.out.println(addOnceChar(str2)); // return the chars
-        String chars = addOnceChar(str2);
-        // System.out.println("chars= "+chars);
-        // System.out.println("~~~~~~~~~");
-
+        int[] cChar = new int[countingChars(str1)];
+        String chars = addOnceChar(str1);
         String remStr = "";
         for (int i = 0; i < chars.length(); i++) { // counting each char at str2-str1 -with an array 
-            cChar[i] = (countChar(str2, chars.charAt(i)) - countChar(str1, chars.charAt(i)));
+            cChar[i] = (countChar(str1, chars.charAt(i)) - countChar(str2, chars.charAt(i)));
             if (cChar[i] != 0) {
                 remStr += chars.charAt(i);
             }
