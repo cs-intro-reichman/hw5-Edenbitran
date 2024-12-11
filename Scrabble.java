@@ -68,6 +68,8 @@ public class Scrabble {
     // the score.
     // If the word includes the sequence "runi", adds 1000 points to the game. V
 
+    static int Score = 0;
+
     public static int wordScore(String word) {
         int score = 0;
         for (int i = 0; i < word.length(); i++) {
@@ -101,13 +103,14 @@ public class Scrabble {
     // 3. The user is prompted to enter another word, or '.' to end the hand.
     public static void playHand(String hand) {
         int n = hand.length() + 2;
-        int score = 0;
         // Declares the variable in to refer to an object of type In, and initializes it
         // to represent
         // the stream of characters coming from the keyboard. Used for reading the
         // user's inputs.
         In in = new In();
-        while (!hand.isEmpty()) {
+        boolean condition = true;
+
+        while (condition) {
             System.out.println("Current Hand: " + MyString.spacedString(hand));
             System.out.println("Enter a word, or '.' to finish playing this hand:");
             // Reads the next "token" from the keyboard. A token is defined as a string of
@@ -120,20 +123,20 @@ public class Scrabble {
             if (isWordInDictionary(input) && (MyString.subsetOf(input, hand))) {// check if the word is valid and if the
                                                                                 // chars in input is appears in hand
                                                                                 // chars
-                hand = MyString.remove(input, hand);
-                score += Scrabble.wordScore(input);
+                hand = MyString.remove(hand, input);
+                n -= hand.length();
+                Score += Scrabble.wordScore(input);
                 System.out.println(
-                        input + " earned " + (Scrabble.wordScore(input)) + " points. Score: " + score + " points");
+                        input + " earned " + (Scrabble.wordScore(input)) + " points. Score: " + Score + " points");
             } else if ((!isWordInDictionary(input)) || (!MyString.subsetOf(input, hand))) {
                 System.out.println("No such word in the dictionary. Try again.");
             }
-            playHand(hand);
-            break;
+            condition = ((n > 0) == true ? true : false);
         }
         if (hand.length() == 0) {
-            System.out.println("Ran out of letters. Total score: " + score + " points");
+            System.out.println("Ran out of letters. Total score: " + Score + " points");
         } else {
-            System.out.println("End of hand. Total score: " + score + " points");
+            System.out.println("End of hand. Total score: " + Score + " points");
         }
     }
 
@@ -172,10 +175,10 @@ public class Scrabble {
 
         //// Uncomment the test you want to run
         // testBuildingTheDictionary();
-        // testScrabbleScore();
+        ////testScrabbleScore();
         ////testCreateHands();
-        // testPlayHands();
-        System.out.println(wordScore("dog"));
+        testPlayHands();
+        // System.out.println(wordScore("dog"));
 
         ////playGame();
     }
@@ -204,8 +207,8 @@ public class Scrabble {
 
     public static void testPlayHands() {
         init();
-        // playHand("ocostrza");
+        playHand("ocostrza");
         // playHand("arbffip");
-        playHand("aretiin");
+        // playHand("aretiin");
     }
 }
