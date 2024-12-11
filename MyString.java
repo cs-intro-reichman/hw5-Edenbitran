@@ -132,7 +132,7 @@ public class MyString {
     public static String remove(String str1, String str2) {
         int[] cChar = new int[countingChars(str1)];
         String chars = addOnceChar(str1);
-        if (str2 == null) {
+        if (str2.length()==0) {
             return str1;
         }
         String remStr = "";
