@@ -3,9 +3,11 @@
  */
 public class Scrabble {
 
-    // Note 1: "Class variables", like the five class-level variables declared below,
+    // Note 1: "Class variables", like the five class-level variables declared
+    // below,
     // are global variables that can be accessed by any function in the class. It is
-    // customary to name class variables using capital letters and underline characters.
+    // customary to name class variables using capital letters and underline
+    // characters.
     // Note 2: If a variable is declared "final", it is treated as a constant value
     // which is initialized once and cannot be changed later.
     // Dictionary file for this Scrabble game
@@ -13,8 +15,8 @@ public class Scrabble {
 
     // The "Scrabble value" of each letter in the English alphabet.
     // 'a' is worth 1 point, 'b' is worth 3 points, ..., z is worth 10 points.
-    static final int[] SCRABBLE_LETTER_VALUES = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4,
-        8, 4, 10};
+    static final int[] SCRABBLE_LETTER_VALUES = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4,
+            8, 4, 10 };
 
     // Number of random letters dealt at each round of this Scrabble game
     static int HAND_SIZE = 10;
@@ -28,17 +30,21 @@ public class Scrabble {
     // Actual number of words in the dictionary (set by the init function, below)
     static int NUM_OF_WORDS;
 
-    // Populates the DICTIONARY array with the lowercase version of all the words read
-    // from the WORDS_FILE, and sets NUM_OF_WORDS to the number of words read from the file.
+    // Populates the DICTIONARY array with the lowercase version of all the words
+    // read
+    // from the WORDS_FILE, and sets NUM_OF_WORDS to the number of words read from
+    // the file.
     public static void init() {
-        // Declares the variable in to refer to an object of type In, and initializes it to represent
-        // the stream of characters coming from the given file. Used for reading words from the file.  
+        // Declares the variable in to refer to an object of type In, and initializes it
+        // to represent
+        // the stream of characters coming from the given file. Used for reading words
+        // from the file.
         In in = new In(WORDS_FILE);
         System.out.println("Loading word list from file...");
         NUM_OF_WORDS = 0;
         while (!in.isEmpty()) {
-            // Reads the next "token" from the file. A token is defined as a string of 
-            // non-whitespace characters. Whitespace is either space characters, or  
+            // Reads the next "token" from the file. A token is defined as a string of
+            // non-whitespace characters. Whitespace is either space characters, or
             // end-of-line characters.
             DICTIONARY[NUM_OF_WORDS++] = in.readString().toLowerCase();
         }
@@ -48,9 +54,9 @@ public class Scrabble {
     // Checks if the given word is in the dictionary.
     public static boolean isWordInDictionary(String word) {
         //// Replace the following statement with your code
-		word = word.toLowerCase();
+        word = word.toLowerCase();
         for (int i = 0; i < NUM_OF_WORDS; i++) {
-            if (word.equals(DICTIONARY[i])) {
+            if (word.equals(DICTIONARY[i].toLowerCase())) {
                 return true;
             }
         }
@@ -58,9 +64,9 @@ public class Scrabble {
     }
 
     // Returns the Scrabble score of the given word.
-    // If the length of the word equals the length of the hand, adds 50 points to the score.
+    // If the length of the word equals the length of the hand, adds 50 points to
+    // the score.
     // If the word includes the sequence "runi", adds 1000 points to the game. V
-    static int sumScore;
 
     public static int wordScore(String word) {
         int score = 0;
@@ -72,7 +78,7 @@ public class Scrabble {
             score += 50;
         }
 
-        if (MyString.subsetOf(word,"runi")) {
+        if (MyString.subsetOf(word, "runi")) {
             score += 1000;
         }
         return score;
@@ -88,30 +94,36 @@ public class Scrabble {
         return hand;
     }
 
-    // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
+    // Runs a single hand in a Scrabble game. Each time the user enters a valid
+    // word:
     // 1. The letters in the word are removed from the hand, which becomes smaller.
     // 2. The user gets the Scrabble points of the entered word.
-    // 3. The user is prompted to enter another word, or '.' to end the hand. 
+    // 3. The user is prompted to enter another word, or '.' to end the hand.
     public static void playHand(String hand) {
         int n = hand.length() + 2;
         int score = 0;
-        // Declares the variable in to refer to an object of type In, and initializes it to represent
-        // the stream of characters coming from the keyboard. Used for reading the user's inputs.   
+        // Declares the variable in to refer to an object of type In, and initializes it
+        // to represent
+        // the stream of characters coming from the keyboard. Used for reading the
+        // user's inputs.
         In in = new In();
         while (!hand.isEmpty()) {
             System.out.println("Current Hand: " + MyString.spacedString(hand));
             System.out.println("Enter a word, or '.' to finish playing this hand:");
-            // Reads the next "token" from the keyboard. A token is defined as a string of 
-            // non-whitespace characters. Whitespace is either space characters, or  
+            // Reads the next "token" from the keyboard. A token is defined as a string of
+            // non-whitespace characters. Whitespace is either space characters, or
             // end-of-line characters.
             String input = in.readString();
             if (input.equals(".")) {
                 break;
             }
-            if (isWordInDictionary(input) && (MyString.subsetOf(input, hand))) {// check if the word is valid and if the chars in input is appears in hand chars
+            if (isWordInDictionary(input) && (MyString.subsetOf(input, hand))) {// check if the word is valid and if the
+                                                                                // chars in input is appears in hand
+                                                                                // chars
                 hand = MyString.remove(input, hand);
                 score += Scrabble.wordScore(input);
-                System.out.println(input + " earned " + (Scrabble.wordScore(input)) + " points. Score: " + score + " points");
+                System.out.println(
+                        input + " earned " + (Scrabble.wordScore(input)) + " points. Score: " + score + " points");
             } else if ((!isWordInDictionary(input)) || (!MyString.subsetOf(input, hand))) {
                 System.out.println("No such word in the dictionary. Try again.");
             }
@@ -119,9 +131,9 @@ public class Scrabble {
             break;
         }
         if (hand.length() == 0) {
-            System.out.println("Ran out of letters. Total score: " + sumScore + " points");
+            System.out.println("Ran out of letters. Total score: " + score + " points");
         } else {
-            System.out.println("End of hand. Total score: " + sumScore + " points");
+            System.out.println("End of hand. Total score: " + score + " points");
         }
     }
 
@@ -130,18 +142,19 @@ public class Scrabble {
         return DICTIONARY[randomIndex];
     }
 
-    // Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
+    // Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand,
+    // or 'e'
     // to end the game. If the user enters any other input, writes an error message.
     public static void playGame() {
         // Initializes the dictionary
         init();
-        // The variable in is set to represent the stream of characters 
-        // coming from the keyboard. Used for getting the user's inputs.  
+        // The variable in is set to represent the stream of characters
+        // coming from the keyboard. Used for getting the user's inputs.
         In in = new In();
 
         while (true) {
             System.out.println("Enter n to deal a new hand, or e to end the game:");
-            // Gets the user's input, which is all the characters entered by 
+            // Gets the user's input, which is all the characters entered by
             // the user until the user enter the ENTER character.
             String input = in.readString();
             if (input.equals("e")) {
@@ -158,14 +171,13 @@ public class Scrabble {
     public static void main(String[] args) {
 
         //// Uncomment the test you want to run
-		//testBuildingTheDictionary();  
-		//testScrabbleScore();
-    	////testCreateHands();
-    	//testPlayHands();
+        // testBuildingTheDictionary();
+        // testScrabbleScore();
+        ////testCreateHands();
+        // testPlayHands();
         System.out.println(wordScore("dog"));
-    
 
-    ////playGame();
+        ////playGame();
     }
 
     public static void testBuildingTheDictionary() {
@@ -193,7 +205,7 @@ public class Scrabble {
     public static void testPlayHands() {
         init();
         // playHand("ocostrza");
-        //playHand("arbffip");
+        // playHand("arbffip");
         playHand("aretiin");
     }
 }
