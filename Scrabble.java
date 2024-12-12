@@ -110,7 +110,6 @@ public class Scrabble {
         // user's inputs.
         In in = new In();
         boolean condition = true;
-        // int num = 1;
         while (condition) {
             System.out.println("Current Hand: " + MyString.spacedString(hand));
             System.out.println("Enter a word, or '.' to finish playing this hand:");
@@ -129,7 +128,7 @@ public class Scrabble {
                 Score += Scrabble.wordScore(input);
                 System.out.println("" + input + " earned " + (Scrabble.wordScore(input)) + " points. Score: "
                         + Score + " points");
-                // num++;
+                System.out.println();
             } else if ((!isWordInDictionary(input)) || (!MyString.subsetOf(input, hand))) {
                 System.out.println("No such word in the dictionary. Try again.");
             }
