@@ -9,13 +9,13 @@ public class MyString {
         // System.out.println(countChar(hello, 'h')); // V
         // System.out.println(countChar(hello, 'l')); // V
         // System.out.println(countChar(hello, 'z')); // V
-       // System.out.println(spacedString(hello)); // V
-        //System.out.println(randomStringOfLetters(3));
-        //System.out.println(subsetOf("pas", "space"));
+        // System.out.println(spacedString(hello)); // V
+        // System.out.println(randomStringOfLetters(3));
+        System.out.println(subsetOf("pas", "space"));
         System.out.println(remove("abc", "b"));
-        //countingChars("meet", "committee");
-        //System.out.println(insertRandomly('a', hello));
-        //System.out.println(spacedString(""));
+        // countingChars("meet", "committee");
+        // System.out.println(insertRandomly('a', hello));
+        // System.out.println(spacedString(""));
     }
 
     /**
@@ -24,7 +24,7 @@ public class MyString {
      * countChar("Center",'c') returns 0.
      *
      * @param str - a string
-     * @param c - a character
+     * @param c   - a character
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
@@ -61,8 +61,7 @@ public class MyString {
                     int index = str2.indexOf(str1.charAt(i));
                     if (countChar(str2, str2.charAt(index)) >= countChar(str1, str1.charAt(i))) {
                         tCount++;
-                    }
-                    else {
+                    } else {
                         return false;
                     }
                 }
@@ -81,7 +80,7 @@ public class MyString {
      *
      * @param str - a string
      * @return a string consisting of the characters of str, separated by
-     * spaces.
+     *         spaces.
      */
     public static String spacedString(String str) {
         String spaceStr = "";
@@ -89,7 +88,7 @@ public class MyString {
             return "";
         }
         for (int i = 0; i < str.length(); i++) {
-            if (i+1 < str.length()) {
+            if (i + 1 < str.length()) {
                 spaceStr += str.charAt(i) + " ";
             }
         }
@@ -112,10 +111,10 @@ public class MyString {
         String rndLetter = "";
         for (int i = 0; i < n; i++) {
             int rnd = (int) ((Math.random()) * abc.length());
-            //System.out.println(rnd); // print the random number (0-25)
-            //System.out.println(abc.charAt(rnd)); // print the chat at the i place
-            rndLetter += abc.charAt(rnd); // concat the char to the string 
-            //System.out.println("~"+rndLetter);
+            // System.out.println(rnd); // print the random number (0-25)
+            // System.out.println(abc.charAt(rnd)); // print the chat at the i place
+            rndLetter += abc.charAt(rnd); // concat the char to the string
+            // System.out.println("~"+rndLetter);
         }
         return rndLetter;
     }
@@ -132,11 +131,11 @@ public class MyString {
     public static String remove(String str1, String str2) {
         int[] cChar = new int[countingChars(str1)];
         String chars = addOnceChar(str1);
-        if (str2.length()==0) {
+        if (str2.length() == 0) {
             return str1;
         }
         String remStr = "";
-        for (int i = 0; i < chars.length(); i++) { // counting each char at str2-str1 -with an array 
+        for (int i = 0; i < chars.length(); i++) { // counting each char at str2-str1 -with an array
             cChar[i] = (countChar(str1, chars.charAt(i)) - countChar(str2, chars.charAt(i)));
             if (cChar[i] != 0) {
                 remStr += chars.charAt(i);
@@ -145,8 +144,9 @@ public class MyString {
         return remStr;
     }
 
-    public static int countingChars(String str2) {  //  return the number of the chars at str2 without duplicates -> will be the length of the array
-        int countChar = 1; //counting the first char
+    public static int countingChars(String str2) { // return the number of the chars at str2 without duplicates -> will
+                                                   // be the length of the array
+        int countChar = 1; // counting the first char
         for (int i = 1; i < str2.length(); i++) {
             if (str2.charAt(i - 1) != str2.charAt(i)) {
                 countChar++; // count only new chars
@@ -155,13 +155,13 @@ public class MyString {
         return countChar;
     }
 
-    public static String addOnceChar(String str2) { // return the chars in str2 without duplicates -> 
-        String chars = "" + str2.charAt(0); //adding the first char
+    public static String addOnceChar(String str2) { // return the chars in str2 without duplicates ->
+        String chars = "" + str2.charAt(0); // adding the first char
         for (int i = 1; i < str2.length(); i++) {
             if (str2.charAt(i - 1) != str2.charAt(i)) {
-                //System.out.println(str2.charAt(i - 1) + ", " + str2.charAt(i));
+                // System.out.println(str2.charAt(i - 1) + ", " + str2.charAt(i));
                 chars += str2.charAt(i); // adding to the String-chatrs only new chars
-                //System.out.println(chars);
+                // System.out.println(chars);
             }
         }
         return chars;
@@ -173,7 +173,7 @@ public class MyString {
      * insertRandomly("s","cat") can return "scat", or "csat", or "cast", or
      * "cats".
      *
-     * @param ch - a character
+     * @param ch  - a character
      * @param str - a string
      * @return a string consisting of str with ch inserted somewhere
      */
