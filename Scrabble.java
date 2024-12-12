@@ -53,9 +53,9 @@ public class Scrabble {
 
     // Checks if the given word is in the dictionary.
     public static boolean isWordInDictionary(String word) {
-        //// Replace the following statement with your code
         for (int i = 0; i < NUM_OF_WORDS; i++) {
-            if (word.toLowerCase().equals(DICTIONARY[i])) {
+            word = word.toLowerCase();
+            if (DICTIONARY[i].equals(word)) {
                 return true;
             }
         }
@@ -111,7 +111,7 @@ public class Scrabble {
         // user's inputs.
         In in = new In();
         boolean condition = true;
-
+        int num = 1;
         while (condition) {
             System.out.println("Current Hand: " + MyString.spacedString(hand));
             System.out.println("Enter a word, or '.' to finish playing this hand:");
@@ -128,8 +128,9 @@ public class Scrabble {
                 hand = MyString.remove(hand, input);
                 n -= hand.length();
                 Score += Scrabble.wordScore(input);
-                System.out.println(
-                        input + " earned " + (Scrabble.wordScore(input)) + " points. Score: " + Score + " points");
+                System.out.println(num + ". '" + input + "' earned " + (Scrabble.wordScore(input)) + " points. Score: "
+                        + Score + " points");
+                num++;
             } else if ((!isWordInDictionary(input)) || (!MyString.subsetOf(input, hand))) {
                 System.out.println("No such word in the dictionary. Try again.");
             }
@@ -179,7 +180,7 @@ public class Scrabble {
         // testBuildingTheDictionary();
         ////testScrabbleScore();
         ////testCreateHands();
-        // testPlayHands();
+        testPlayHands();
         // System.out.println(wordScore("dog"));
         System.out.println(isWordInDictionary("CAT"));
         // System.out.println(wordScore("running"));
