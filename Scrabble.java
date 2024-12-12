@@ -56,7 +56,7 @@ public class Scrabble {
         //// Replace the following statement with your code
         word = word.toLowerCase();
         for (int i = 0; i < NUM_OF_WORDS; i++) {
-            if (word.equals(DICTIONARY[i].toLowerCase())) {
+            if (word.equals(DICTIONARY[i])) {
                 return true;
             }
         }
@@ -177,8 +177,9 @@ public class Scrabble {
         // testBuildingTheDictionary();
         ////testScrabbleScore();
         ////testCreateHands();
-        testPlayHands();
+        // testPlayHands();
         // System.out.println(wordScore("dog"));
+        System.out.println(isWordInDictionary("CAT"));
 
         ////playGame();
     }
