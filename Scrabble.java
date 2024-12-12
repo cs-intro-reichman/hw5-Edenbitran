@@ -54,8 +54,7 @@ public class Scrabble {
     // Checks if the given word is in the dictionary.
     public static boolean isWordInDictionary(String word) {
         for (int i = 0; i < NUM_OF_WORDS; i++) {
-            word = word.toLowerCase();
-            if (DICTIONARY[i].equals(word)) {
+            if (word.equals(DICTIONARY[i])) {
                 return true;
             }
         }
@@ -111,7 +110,7 @@ public class Scrabble {
         // user's inputs.
         In in = new In();
         boolean condition = true;
-        int num = 1;
+        // int num = 1;
         while (condition) {
             System.out.println("Current Hand: " + MyString.spacedString(hand));
             System.out.println("Enter a word, or '.' to finish playing this hand:");
@@ -128,9 +127,9 @@ public class Scrabble {
                 hand = MyString.remove(hand, input);
                 n -= hand.length();
                 Score += Scrabble.wordScore(input);
-                System.out.println(num + ". '" + input + "' earned " + (Scrabble.wordScore(input)) + " points. Score: "
+                System.out.println("" + input + " earned " + (Scrabble.wordScore(input)) + " points. Score: "
                         + Score + " points");
-                num++;
+                // num++;
             } else if ((!isWordInDictionary(input)) || (!MyString.subsetOf(input, hand))) {
                 System.out.println("No such word in the dictionary. Try again.");
             }
@@ -178,15 +177,15 @@ public class Scrabble {
 
         //// Uncomment the test you want to run
         // testBuildingTheDictionary();
-        ////testScrabbleScore();
-        ////testCreateHands();
+        //// testScrabbleScore();
+        //// testCreateHands();
         testPlayHands();
         // System.out.println(wordScore("dog"));
         System.out.println(isWordInDictionary("CAT"));
         // System.out.println(wordScore("running"));
         // System.out.println(wordScore(""));
-        ///System.out.println(createHand());
-        ////playGame();
+        /// System.out.println(createHand());
+        //// playGame();
     }
 
     public static void testBuildingTheDictionary() {
