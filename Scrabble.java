@@ -55,7 +55,7 @@ public class Scrabble {
     public static boolean isWordInDictionary(String word) {
         //// Replace the following statement with your code
         for (int i = 0; i < NUM_OF_WORDS; i++) {
-            if (word.toLowerCase().equals(DICTIONARY[i])) {
+            if ((DICTIONARY[i].equals(word.toLowerCase()))) {
                 return true;
             }
         }
