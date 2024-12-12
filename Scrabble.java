@@ -130,7 +130,7 @@ public class Scrabble {
                         + Score + " points");
                 System.out.println();
             } else if ((!isWordInDictionary(input)) || (!MyString.subsetOf(input, hand))) {
-                System.out.println("No such word in the dictionary. Try again.");
+                System.out.println("Invalid word. Try again.");
             }
             condition = ((n > 0) == true ? true : false);
         }
