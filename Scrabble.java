@@ -54,9 +54,8 @@ public class Scrabble {
     // Checks if the given word is in the dictionary.
     public static boolean isWordInDictionary(String word) {
         //// Replace the following statement with your code
-        word = word.toLowerCase();
         for (int i = 0; i < NUM_OF_WORDS; i++) {
-            if (word.equals(DICTIONARY[i])) {
+            if (word.toLowerCase().equals(DICTIONARY[i])) {
                 return true;
             }
         }
@@ -72,6 +71,9 @@ public class Scrabble {
 
     public static int wordScore(String word) {
         int score = 0;
+        if (word.length() == 0) {
+            return 0;
+        }
         for (int i = 0; i < word.length(); i++) {
             score += SCRABBLE_LETTER_VALUES[(word.charAt(i)) - 97];
         }
@@ -80,7 +82,7 @@ public class Scrabble {
             score += 50;
         }
 
-        if (MyString.subsetOf(word, "runi")) {
+        if (MyString.subsetOf("runi", word)) {
             score += 1000;
         }
         return score;
@@ -180,7 +182,8 @@ public class Scrabble {
         // testPlayHands();
         // System.out.println(wordScore("dog"));
         System.out.println(isWordInDictionary("CAT"));
-
+        System.out.println(wordScore("running"));
+        System.out.println(wordScore(""));
         ////playGame();
     }
 
