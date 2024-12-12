@@ -92,9 +92,9 @@ public class Scrabble {
     // into it, at random indexes, the letters 'a' and 'e'
     // (these two vowels make it easier for the user to construct words)
     public static String createHand() {
-        String hand = MyString.randomStringOfLetters(HAND_SIZE - 2);
-        hand = MyString.insertRandomly('a', hand) + "" + MyString.insertRandomly('e', hand);
-
+        String hand = (MyString.randomStringOfLetters(HAND_SIZE - 2));
+        hand = MyString.insertRandomly('a', hand);
+        hand = MyString.insertRandomly('e', hand);
         return hand;
     }
 
@@ -181,9 +181,10 @@ public class Scrabble {
         ////testCreateHands();
         // testPlayHands();
         // System.out.println(wordScore("dog"));
-        System.out.println(isWordInDictionary("CAT"));
-        System.out.println(wordScore("running"));
-        System.out.println(wordScore(""));
+        // System.out.println(isWordInDictionary("CAT"));
+        // System.out.println(wordScore("running"));
+        // System.out.println(wordScore(""));
+        System.out.println(createHand());
         ////playGame();
     }
 
